@@ -1,0 +1,22 @@
+site_name: Jake's Automation Hub
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+
+# This allows the diagrams to render
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# This is your Menu Bar
+nav:
+  - Home: index.md
+  - Buildium Project:
+    - Project Plan: buildium/planning.md
+    - Code Implementation: buildium/code_logic.md
