@@ -1,74 +1,72 @@
-Automation Hub
+# Automation Hub
 
 Centralized documentation and planning repository for internal automation tools.
 
-This repository hosts the Automation Hub website, a static documentation site built with MkDocs that details architecture, API logic, and workflows for our internal projects (Buildium, Google Sheets, etc.).
+A static documentation site (MkDocs) detailing architecture, API logic, and workflows for internal projects (Buildium, Google Sheets, etc.).
 
-Current Projects
+## Table of Contents
 
-1. Buildium Collections Automation
+- [Current Projects](#current-projects)
+- [Setup & Installation](#setup--installation)
+- [Running the Documentation Server](#running-the-documentation-server)
+- [How to Add New Projects](#how-to-add-new-projects)
+- [Security Note](#security-note)
 
-Goal: Automate daily late fee application and balance tracking.
+## Current Projects
 
-Tech Stack: Python, Buildium API, Google Sheets API.
+### Buildium Collections Automation
+- **Goal:** Automate daily late fee application and balance tracking.  
+- **Tech Stack:** Python, Buildium API, Google Sheets API.  
+- **Status:** In Planning / Active Development  
+- **Documentation:** View project plan (served via MkDocs)
 
-Status: In Planning / Active Development
+## Setup & Installation
 
-Documentation: View Project Plan (When server is running)
+Prerequisites
+- Python 3.x
+- WSL / Linux / macOS (recommended)
 
-Setup & Installation
+Installation
+1. Create a Python virtual environment:
+    ```bash
+    python3 -m venv .venv
+    ```
 
-Follow these steps to run the documentation site locally.
+2. Activate the virtual environment:
+    ```bash
+    source .venv/bin/activate
+    ```
 
-1. Prerequisites
+3. Install dependencies into the venv:
+    ```bash
+    ./.venv/bin/python -m pip install mkdocs mkdocs-material
+    ```
 
-Python 3.x
+## Running the Documentation Server
 
-WSL / Linux / macOS (Recommended)
-
-2. Installation
-
-Clone the repository and set up the virtual environment:
-
-# 1. Create the virtual environment
-python3 -m venv .venv
-
-# 2. Activate it
-source .venv/bin/activate
-
-# 3. Install dependencies (Force install into venv)
-./.venv/bin/python -m pip install mkdocs mkdocs-material
-
-
-Running the Documentation Server
-
-To view the website, diagrams, and project plans:
-
-Start the server:
-
+Start the MkDocs dev server:
+```bash
 ./.venv/bin/mkdocs serve
+```
 
+Open your browser to:
+http://localhost:8000
 
-Open your browser:
-Go to: http://localhost:8000
+## How to Add New Projects
 
-How to Add New Projects
+1. Create a new folder under `docs/` (e.g., `docs/lease-renewals/`).
+2. Add markdown files (e.g., `index.md`, `planning.md`).
+3. Update `mkdocs.yml` navigation:
+    ```yaml
+    nav:
+      - Home: index.md
+      - Buildium Project:
+          - Overview: buildium/index.md
+      - New Project:
+          - Overview: new-project/index.md
+    ```
 
-Create a new folder in docs/ (e.g., docs/lease-renewals/).
+## Security Note
 
-Add your markdown files (index.md, planning.md).
-
-Update the mkdocs.yml navigation section:
-
-nav:
-  - Home: index.md
-  - Buildium Project: ...
-  - New Project:
-      - Overview: new-project/index.md
-
-
-Security Note
-
-No API Keys: This repository is for documentation only.
-
-Secret Management: Actual scripts and .env files containing API keys (BUILDIUM_CLIENT_ID, etc.) should reside in the separate buildium-scripts repository
+- This repository is documentation-only: do not store API keys here.
+- Secret management: actual scripts and `.env` files containing secrets (e.g., `BUILDIUM_CLIENT_ID`) should be kept in the separate `buildium-scripts` repository or a secure vault.
